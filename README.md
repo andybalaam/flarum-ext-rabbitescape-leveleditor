@@ -18,8 +18,8 @@ the Android+PC game
 * Follow [Extension quick start](https://flarum.org/docs/extend/start/) to get
   a working extension setup.
 * Run `composer update` inside /var/www/html/rabbit-escape/levels
-* Run `sudo chown -R andy:www-data .` inside /var/www/html/rabbit-escape/levels
-* Run `chmod -R a+rw .` inside /var/www/html/rabbit-escape/levels
+* Run `php flarum cache:clear; rm assets/rev-manifest.json` inside /var/www/html/rabbit-escape/levels
+* Run `sudo chown -R www-data:www-data assets storage/*` inside /var/www/html/rabbit-escape/levels
 * Run `npm install` inside
   /var/www/html/rabbit-escape/levels/workbench/flarum-ext-rabbitescape-leveleditor/js/forum
 * Launch `gulp watch` inside
