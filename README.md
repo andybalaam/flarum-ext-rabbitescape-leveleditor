@@ -15,7 +15,11 @@ the Android+PC game
   environment](https://www.artificialworlds.net/blog/2018/09/06/writing-a-new-flarum-extension-on-ubuntu/),
   but clone this repo into workbench, instead of creating an extension
   directory inside
+* Follow [Extension quick start](https://flarum.org/docs/extend/start/) to get
+  a working extension setup.
 * Run `composer update` inside /var/www/html/rabbit-escape/levels
+* Run `sudo chown -R andy:www-data .` inside /var/www/html/rabbit-escape/levels
+* Run `chmod -R a+rw .` inside /var/www/html/rabbit-escape/levels
 * Run `npm install` inside
   /var/www/html/rabbit-escape/levels/workbench/flarum-ext-rabbitescape-leveleditor/js/forum
 * Launch `gulp watch` inside
