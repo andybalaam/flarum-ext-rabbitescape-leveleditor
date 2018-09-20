@@ -4,14 +4,14 @@ import Post from 'flarum/components/Post';
 
 function loadLevelEditor(viewDiv) {
     return function() {
-        // Find the first ```rel code block
+        // Find the nearby ```rel code block
         var c = viewDiv.parentNode.querySelector("code.language-rel");
         if (!c) {;
             return;  // Nothing to do if there isn't one
         }
 
         if (typeof(Elm) == "undefined") {
-            // The script tag was loaded for a different post,
+            // The Elm script tag was loaded for a different post,
             // but has not executed yet.  Try again in a bit.
             setTimeout(loadLevelEditor(viewDiv), 100);
             return;
