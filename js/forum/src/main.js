@@ -12,8 +12,11 @@ function loadLevelEditor(viewDiv) {
             return;  // Nothing to do if there isn't one
         }
 
-        if (!Elm){
-            return; //  Bug?
+        if (typeof(Elm) == "undefined") {
+            // The script tag was loaded for a different post,
+            // but has not executed yet.  Try again in a bit.
+            setTimeout(loadLevelEditor(viewDiv), 100);
+            return;
         }
 
         // Run the Elm program, which replaces that div
