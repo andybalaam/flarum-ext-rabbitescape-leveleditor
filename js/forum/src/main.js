@@ -2,8 +2,6 @@ import { extend } from 'flarum/extend';
 import Post from 'flarum/components/Post';
 
 
-var viewId = "levelEditorView";
-
 function loadLevelEditor(viewDiv) {
     return function() {
         // Find the first ```rel code block
@@ -25,8 +23,7 @@ function loadLevelEditor(viewDiv) {
             flags: {
                 worldText: c.innerHTML,
                 mode: "View",
-                urlPrefix: "/rabbit-escape/level-editor/",
-                id: viewId
+                urlPrefix: "/rabbit-escape/level-editor/"
             }
         });
     };
@@ -64,7 +61,7 @@ app.initializers.add('rabbitescape-leveleditor', function() {
         vdom.children.push(
             m(
                 'div',
-                {id: viewId, config: prepLevelEditor}
+                {config: prepLevelEditor}
             )
         );
     });
