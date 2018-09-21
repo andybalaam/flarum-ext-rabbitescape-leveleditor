@@ -4,7 +4,8 @@ all:
 
 upload:
 	rsync \
-		-rv \
+		-r \
 		--exclude=.git \
 		./ \
 		dreamhost:artificialworlds.net/rabbit-escape/levels/workbench/flarum-ext-rabbitescape-leveleditor/
+	@echo "Now clear cache and/or unload and reload the Rabbit Escape extension."
