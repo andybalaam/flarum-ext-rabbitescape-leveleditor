@@ -57,12 +57,13 @@ function prepLevelEditor(viewDiv) {
 }
 
 app.initializers.add('rabbitescape-leveleditor', function() {
-    extend(Post.prototype, 'view', function(vdom) {
-        vdom.children.push(
-            m(
-                'div',
-                {config: prepLevelEditor}
-            )
-        );
+    extend(Post.prototype, 'view', function(article) {
+        var div = article.children[0];
+        if (typeof(div.children) == "undefined") {
+            return;  // This was a "retain" - do nothing, even though we'd
+                     // actually like to update here.
+        }
+        var headerAndBody = div.children[1];
+        headerAndBody.splice(1, 0, m('div', {config: prepLevelEditor}));
     });
 });
