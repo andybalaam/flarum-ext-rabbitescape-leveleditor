@@ -17,6 +17,21 @@ function loadLevelEditor(viewDiv) {
             return;
         }
 
+        c.style.display = "none";
+        var showCode = document.createElement("a");
+        showCode.style.fontSize = "75%"
+        showCode.innerHTML = "&lt;show code&gt;";
+        showCode.onclick = function() {
+            if (c.style.display == "none") {
+                showCode.innerHTML = "&lt;hide code&gt;";
+                c.style.display = "inherit";
+            } else {
+                c.style.display = "none";
+                showCode.innerHTML = "&lt;show code&gt;";
+            }
+        };
+        c.parentNode.appendChild(showCode)
+
         // Run the Elm program, which replaces that div
         var app = Elm.Main.init({
             node: viewDiv,
