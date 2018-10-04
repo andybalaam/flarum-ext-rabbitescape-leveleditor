@@ -37,4 +37,4 @@ Go to https://www.artificialworlds.net/rabbit-escape/levels/ and get involved!
 
 When you find a problem in the level editor forum it's difficult to tell whether it's a bug in the Flarum integration (this repo) or in the level editor code (which is at https://github.com/andybalaam/rabbit-escape-level-editor).  To keep it simple:
 
-*Log all issues in the Level Editor repo at https://github.com/andybalaam/rabbit-escape-level-editor/issues*
+**Log all issues in the Level Editor repo at https://github.com/andybalaam/rabbit-escape-level-editor/issues**
