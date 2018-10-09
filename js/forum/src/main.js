@@ -56,7 +56,7 @@ function loadLevelEditor(showLink, editor, editorFullscreen, editorVdom) {
         }
 
         // Find the nearby textarea
-        var textarea = showLink.parentNode.parentNode.parentNode.querySelector(
+        var textarea = showLink.parentNode.parentNode.parentNode.parentNode.querySelector(
             "textarea.Composer-flexible");
         if (!textarea) {;
             console.log("No textarea");
@@ -161,6 +161,32 @@ function prepShowLevelEditor(editorVdom) {
 }
 
 
+function findNode(node, tag, clazz) {
+
+    if (!node){
+        return null;
+    }
+
+    if (
+        node.tag == tag &&
+        node.attrs &&
+        node.attrs.className &&
+        node.attrs.className.indexOf &&
+        node.attrs.className.indexOf(clazz) != -1
+    ) {
+        return node;
+    } else if (node.children) {
+        for (var i= 0; i < node.children.length; i++) {
+            var ret = findNode(node.children[i], tag, clazz);
+            if (ret) {
+                return ret;
+            }
+        }
+    }
+    return null;
+}
+
+
 app.initializers.add('rabbitescape-leveleditor', function() {
 
     extend(Post.prototype, 'view', function(article) {
@@ -174,19 +200,28 @@ app.initializers.add('rabbitescape-leveleditor', function() {
     });
 
     extend(ComposerBody.prototype, 'view', function(composer) {
-        composer.children.unshift(
-            m('div',
+
+        var composerFooter = findNode(composer, "ul", "Composer-footer");
+
+        if (composerFooter) {
+            composerFooter.children.push(
                 m(
-                    'div',
-                    {style: "margin: 0.5em"},
+                    'li',
                     m(
-                        'a',
-                        {config:prepShowLevelEditor(this.editor)},
-                        "<show level editor>"
+                        'div',
+                        {style: "margin: 0.5em"},
+                        m(
+                            'a',
+                            {config:prepShowLevelEditor(this.editor)},
+                            "<show level editor>"
+                        )
                     )
                 )
-            )
-        );
+            );
+        }
+        else {
+            console.log("Unable to find Composer-footer.");
+        }
     });
 
 });
