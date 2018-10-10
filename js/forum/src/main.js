@@ -56,7 +56,7 @@ function loadLevelEditor(showLink, editor, editorFullscreen, editorVdom) {
         }
 
         // Find the nearby textarea
-        var textarea = showLink.parentNode.parentNode.parentNode.parentNode.querySelector(
+        var textarea = showLink.parentNode.parentNode.parentNode.querySelector(
             "textarea.Composer-flexible");
         if (!textarea) {;
             console.log("No textarea");
@@ -207,13 +207,22 @@ app.initializers.add('rabbitescape-leveleditor', function() {
             composerFooter.children.push(
                 m(
                     'li',
+                    {style: "font-weight: bold;"},
                     m(
-                        'div',
-                        {style: "margin: 0.5em"},
+                        'button',
+                        {
+                            class: "Button",
+                            type: "button",
+                            style: "margin: 0.5em",
+                            config: prepShowLevelEditor(this.editor),
+                        },
+                        "Edit Level",
                         m(
-                            'a',
-                            {config:prepShowLevelEditor(this.editor)},
-                            "<show level editor>"
+                            'img',
+                            {
+                                style: "margin-left: 0.7em; margin-bottom: -0.3em; height: 1.4em;",
+                                src: "/rabbit-escape/level-editor/images/rabbit_stand_right.svg"
+                            }
                         )
                     )
                 )
