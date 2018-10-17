@@ -4,8 +4,14 @@ import ComposerBody from 'flarum/components/ComposerBody';
 
 
 function createShowCodeLink(codeNode) {
+
+    if (codeNode.parentNode.getElementsByClassName("show-code").length > 0) {
+        return;
+    }
+
     codeNode.style.display = "none";
     var showCode = document.createElement("a");
+    showCode.className = "show-code";
     showCode.style.fontSize = "75%"
     showCode.innerHTML = "&lt;show code&gt;";
     showCode.onclick = function() {
