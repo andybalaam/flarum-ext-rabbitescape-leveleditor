@@ -3,6 +3,24 @@ import Post from 'flarum/components/Post';
 import ComposerBody from 'flarum/components/ComposerBody';
 
 
+function createShowCodeLink(codeNode) {
+    codeNode.style.display = "none";
+    var showCode = document.createElement("a");
+    showCode.style.fontSize = "75%"
+    showCode.innerHTML = "&lt;show code&gt;";
+    showCode.onclick = function() {
+        if (codeNode.style.display == "none") {
+            showCode.innerHTML = "&lt;hide code&gt;";
+            codeNode.style.display = "inherit";
+        } else {
+            codeNode.style.display = "none";
+            showCode.innerHTML = "&lt;show code&gt;";
+        }
+    };
+    codeNode.parentNode.appendChild(showCode)
+}
+
+
 function loadLevelViewer(viewDiv) {
     return function() {
         if (typeof(Elm) == "undefined") {
@@ -18,20 +36,8 @@ function loadLevelViewer(viewDiv) {
             return;  // Nothing to do if there isn't one
         }
 
-        c.style.display = "none";
-        var showCode = document.createElement("a");
-        showCode.style.fontSize = "75%"
-        showCode.innerHTML = "&lt;show code&gt;";
-        showCode.onclick = function() {
-            if (c.style.display == "none") {
-                showCode.innerHTML = "&lt;hide code&gt;";
-                c.style.display = "inherit";
-            } else {
-                c.style.display = "none";
-                showCode.innerHTML = "&lt;show code&gt;";
-            }
-        };
-        c.parentNode.appendChild(showCode)
+        createShowCodeLink(c);
+
 
         // Run the Elm program, which replaces that div
         var app = Elm.Main.init({
