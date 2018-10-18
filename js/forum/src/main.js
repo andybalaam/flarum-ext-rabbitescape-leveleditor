@@ -1,4 +1,5 @@
 import { extend } from 'flarum/extend';
+import LogInModal from 'flarum/components/LogInModal';
 import Post from 'flarum/components/Post';
 import ComposerBody from 'flarum/components/ComposerBody';
 
@@ -199,7 +200,44 @@ function findNode(node, tag, clazz) {
 }
 
 
+function addLinkToLogIn(content) {
+    var form = content.children[1];
+    if (!form || !form.children){
+        console.log("Could not find form on log in dialog.");
+        return;
+    }
+    form.children.splice(
+        2,
+        0,
+        m(
+            "div",
+            {"class": "Modal-footer"},
+            "Don't want to log in?  ",
+            m(
+                "a",
+                {
+                    "href": "/rabbit-escape/level-editor",
+                    "style": "color: red;"
+                },
+                "Just make a level without saving it on the forum"
+            ),
+            "."
+        )
+    );
+}
+
+
 app.initializers.add('rabbitescape-leveleditor', function() {
+
+    extend(LogInModal.prototype, 'view', function(modal) {
+        var content = findNode(modal, "div", "Modal-content");
+        if (!content) {
+            console.log("Could not find log in dialog content");
+        }
+        else {
+            addLinkToLogIn(content);
+        }
+    });
 
     extend(Post.prototype, 'view', function(article) {
         var div = article.children[0];
