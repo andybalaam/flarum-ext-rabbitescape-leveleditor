@@ -8,4 +8,5 @@ upload:
 		--exclude=.git \
 		./ \
 		dreamhost:artificialworlds.net/rabbit-escape/levels/workbench/flarum-ext-rabbitescape-leveleditor/
-	@echo "Now clear cache and/or unload and reload the Rabbit Escape extension."
+	ssh dreamhost "cd artificialworlds.net/rabbit-escape/levels; php flarum cache:clear"
+	@echo "If it doesn't work, unload and reload the Rabbit Escape extension."
