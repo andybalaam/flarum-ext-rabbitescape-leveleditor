@@ -99,7 +99,7 @@ function loadLevelEditor(showLink, editor, editorFullscreen, editorVdom) {
             }
         });
         app.ports.saveAndQuit.subscribe(function(data) {
-            var level = "```rel\n"+ data + "\n```";
+            var level = "```rel\n"+ data + "\n```\n";
             var newValue = "";
             if (levelStart == -1) {
                 newValue = level + postContents;
