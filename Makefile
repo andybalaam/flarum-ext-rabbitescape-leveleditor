@@ -1,12 +1,8 @@
 all:
-	echo "Try cd js/forum; gulp watch"
+	@echo "Try make upload"
 
 
 upload:
-	rsync \
-		-r \
-		--exclude=.git \
-		./ \
-		dreamhost:artificialworlds.net/rabbit-escape/levels/workbench/flarum-ext-rabbitescape-leveleditor/
-	ssh dreamhost "cd artificialworlds.net/rabbit-escape/levels; php flarum cache:clear"
-	@echo "If it doesn't work, unload and reload the Rabbit Escape extension."
+	#scp flarum/extend.php rabbitescape.artificialworlds.net:flarum/
+	#ssh rabbitescape.artificialworlds.net 'mkdir -p rabbitescape.artificialworlds.net/customjs'
+	scp rabbitescape.artificialworlds.net/customjs/flarum-rabbitescape.js rabbitescape.artificialworlds.net:rabbitescape.artificialworlds.net/customjs/
